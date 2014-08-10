@@ -44,11 +44,16 @@ static void beginConnection(Dict* args,
     String* password = Dict_getString(args, String_CONST("password"));
     String* publicKey = Dict_getString(args, String_CONST("publicKey"));
     String* address = Dict_getString(args, String_CONST("address"));
+    String* user = Dict_getString(args, String_CONST("user"));
     int64_t* interfaceNumber = Dict_getInt(args, String_CONST("interfaceNumber"));
     uint32_t ifNum = (interfaceNumber) ? ((uint32_t) *interfaceNumber) : 0;
     String* error = NULL;
 
-    Log_debug(ctx->logger, "Peering with [%s]", publicKey->bytes);
+    if (user != NULL) {
+        Log_debug(ctx->logger, "Peering with \"%s\" [%s]", user->bytes, publicKey->bytes);
+    } else {
+        Log_debug(ctx->logger, "Peering with [%s]", publicKey->bytes);
+    }
 
     uint8_t pkBytes[32];
     int ret;
