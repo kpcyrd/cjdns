@@ -324,14 +324,8 @@ def main(argv):
         # Monitor for unresponsive nodes. This will loop until cjdns restarts, 
         # at which point it will keep looping but won't actually work anymore.
         watcher.run()
-        
-    
-        
+
+
 if __name__ == "__main__":
     # Run our main method
     sys.exit(main(sys.argv))
-
-
-
-
-
